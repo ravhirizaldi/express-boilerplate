@@ -2,6 +2,13 @@
   "name": "node22-esm-boilerplate",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "description": "A production-ready Express boilerplate using Node.js 22 (ESM) with Winston logger, Prisma ORM, and more.",
+  "author": "Ravhi Rizaldi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ravhirizaldi/express-boilerplate.git"
+  },
   "type": "module",
   "engines": {
     "node": ">=22"
