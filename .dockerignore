@@ -38,3 +38,10 @@ docker-compose.dev.yml
 coverage
 __tests__
 __mocks__
+
+# Rest file or http request files
+*.rest
+*.http
+
+package-lock.json
+yarn.lock
