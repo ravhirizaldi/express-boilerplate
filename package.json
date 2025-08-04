@@ -1,0 +1,38 @@
+{
+  "name": "node22-esm-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file=.env ./src/index.js",
+    "dev": "nodemon --watch src --ext js,json --exec \"node --env-file=.env.development ./src/index.js\"",
+    "start:prod": "NODE_ENV=production node --env-file=.env.production ./src/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "prisma:seed": "node --env-file=.env prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "bcrypt": "^6.0.0",
+    "chalk": "^5.4.1",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/express": "^5.0.3",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-n": "^17.21.3",
+    "globals": "^15.9.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "prisma": "^6.13.0"
+  }
+}

@@ -1,0 +1,46 @@
+# Node modules
+node_modules/
+
+# Env files (jangan pernah commit credentials)
+.env
+.env.development
+.env.production
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Output of 'npm run build'
+dist/
+build/
+
+# Prisma generated client (biar regen di CI/CD)
+# Kalau generate-nya di src/generated/prisma → masukin path itu
+/src/generated/prisma/
+/prisma/migrations/
+
+# Prisma temp files
+.prisma/
+
+# Docker
+docker-compose.override.yml
+docker-compose.dev.yml
+*.pid
+
+# IDE / Editor junk
+.vscode/
+.idea/
+*.swp
+
+# Cache / Temp
+.cache/
+.tmp/
+.DS_Store
+
+# Testing coverage
+coverage/

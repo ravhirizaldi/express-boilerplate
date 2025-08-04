@@ -1,0 +1,40 @@
+# Node modules (akan di-install ulang di image)
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+*.log
+
+# Env files (jangan sampai kebawa image kalau gak mau)
+.env
+.env.development
+.env.production
+.env.local
+.env.*.local
+
+# Build artifacts
+dist
+build
+.cache
+.tmp
+
+# Prisma
+/src/generated/prisma
+/prisma/migrations
+.prisma
+
+# Docker & Compose
+docker-compose.override.yml
+docker-compose.dev.yml
+
+# OS & Editor junk
+.DS_Store
+.vscode
+.idea
+*.swp
+*.pid
+
+# Tests & Coverage
+coverage
+__tests__
+__mocks__

@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CaslRole {
+  id          Int              @id @default(autoincrement())
+  name        String           @unique @db.VarChar(255) // Misal: Administrator, Manager
+  description String?          @db.Text
+  permissions CaslPermission[]
+  users       User[]
+  userRoles   UserCaslRole[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @default(now()) @updatedAt
+}
+
+model User {
+  id         Int            @id @default(autoincrement())
+  name       String         @db.VarChar(255)
+  username   String         @unique @db.VarChar(255)
+  email      String         @unique @db.VarChar(255)
+  password   String         @db.VarChar(255)
+  roleId     Int
+  role       CaslRole       @relation(fields: [roleId], references: [id])
+  profile    UserProfile?
+  userRoles  UserCaslRole[]
+  isActive   Boolean        @default(true)
+  isVerified Boolean        @default(false)
+  lastLogin  DateTime?
+  updatedAt  DateTime       @default(now()) @updatedAt
+  createdAt  DateTime       @default(now())
+
+  @@index([isActive, roleId]) // Index untuk optimasi query berdasarkan status aktif dan role
+}
+
+model UserCaslRole {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  roleId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  role      CaslRole @relation(fields: [roleId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, roleId]) // biar gak double assign role yang sama
+}
+
+enum CaslAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  MANAGE
+}
+
+model CaslPermission {
+  id         Int        @id @default(autoincrement())
+  action     CaslAction
+  subject    String     @db.VarChar(255)
+  conditions Json?
+  inverted   Boolean    @default(false)
+  roleId     Int
+  role       CaslRole   @relation(fields: [roleId], references: [id])
+  createdAt  DateTime   @default(now())
+
+  @@unique([roleId, action, subject])
+}
+
+model UserProfile {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @unique
+  bio         String?   @db.Text
+  avatarUrl   String?   @db.VarChar(255)
+  website     String?   @db.VarChar(255)
+  location    String?   @db.VarChar(255)
+  phone       String?   @db.VarChar(50)
+  extension   String?   @db.VarChar(10)
+  socialLinks Json?
+  birthDate   DateTime?
+  isPublic    Boolean   @default(true)
+  user        User      @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+
+  @@index([isPublic], name: "idx_user_profile_public")
+}
