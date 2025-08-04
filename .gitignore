@@ -1,5 +1,7 @@
 # Node modules
 node_modules/
+package-lock.json
+yarn.lock
 
 # Env files (jangan pernah commit credentials)
 .env
@@ -44,3 +46,7 @@ docker-compose.dev.yml
 
 # Testing coverage
 coverage/
+
+# Rest file or http request files
+*.rest
+*.http
