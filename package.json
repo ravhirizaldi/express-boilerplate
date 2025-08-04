@@ -19,14 +19,21 @@
     "@prisma/client": "^6.13.0",
     "bcrypt": "^6.0.0",
     "chalk": "^5.4.1",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
     "@types/express": "^5.0.3",
+    "@types/node": "^24.1.0",
     "eslint": "^9.30.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-n": "^17.21.3",
